@@ -12,18 +12,28 @@ code {
     monospace;
 }
 
-#dailyList{
-  background: #61dafb;
-}
+
 
 #dateTime{
+  width: 10rem;
+  height: 10rem;
   background: #adc875;
 }
 
 #dDay{
+  width: 20rem;
+  height: 20em;
   background: rgba(123, 79, 226, 0.42);
 }
 
 #weather{
+  width: 30rem;
+  height: 30rem;
   background: rgba(247, 86, 164, 0.42);
+}
+
+#dailyList{
+  width: 40rem;
+  height: 35rem;
+  background: #61dafb;
 }

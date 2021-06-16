@@ -18,7 +18,6 @@ const DailyList = () => {
             {todoList.map((todoItem) => (
                 <TodoItem key={todoItem.id} item={todoItem}/>
             ))}
-
         </div>
     )
 }

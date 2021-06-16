@@ -1,11 +1,17 @@
 import {atom, selector} from "recoil";
-
+import axios from 'axios';
 export interface Todos {
     id: number,
     text: string,
     isComplete: boolean
 }
 
+// const GetWeather = async () => {
+//     const getData = axios.get("https://api.openweathermap.org/data/2.5/weather?q=busan&appid=38baf7dd158addef335f90d46582eb22").then(res => res.data);
+//     const data =  await getData;
+//     console.log("data", data)
+//     return data
+// }
 
 export const textState = atom({
     key: 'textState',
@@ -20,6 +26,11 @@ export const todoListState = atom<Todos[]>({
 export const todoListFilterState = atom({
     key: 'todoListFilterState',
     default: 'ShowAll'
+})
+
+export const currWeather = atom({
+    key: 'currWeather',
+    default: null
 })
 
 export const todoListStatsState = selector({

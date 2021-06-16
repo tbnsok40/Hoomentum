@@ -1,24 +1,39 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
+import {useRecoilState} from "recoil";
+import {currWeather} from "../store/Atom";
 
-
-const getWeather = async () => {
-    const getData = axios.get("https://api.openweathermap.org/data/2.5/weather?q=busan&appid=38baf7dd158addef335f90d46582eb22").then(res => res.data);
-    const data = await getData;
-    console.log(data)
-
-    // 절대온도 - 273 = 섭씨 온도
-    console.log(data.name, data.weather.map((wea: { main: string; }) => wea.main), data.main.temp - 273)
-}
-
+// 절대온도 - 273 = 섭씨 온도
 
 const Weather = () => {
     useEffect(() => {
-        getWeather()
     }, [])
+    const[state, setState] = useState();
+    let Weather;
+    let count = 0;
+    const GetWeather = async () => {
+        let getData;
+        if (count < 20) {
+            getData = await axios.get("https://api.openweathermap.org/data/2.5/weather?q=busan&appid=38baf7dd158addef335f90d46582eb22").then(res => res.data);
+        }
+        console.log(getData)
+        count ++
+        return await getData;
+    }
 
-    return(
-        <div id="weather">123</div>
-    )
+    let temp = null;
+
+    GetWeather().then(res => temp = res);
+
+    // setState 사용하지 않고, 바인딩 할 수 있는 방법?
+    // Weather Api reload Time:
+
+    // const ReloadTime = 1000*60*3
+    // setInterval(GetWeather, ReloadTime)
+
+    return (
+        <div id="weather">
+        </div>
+    );
 }
 export default Weather;
